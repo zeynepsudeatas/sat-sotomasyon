@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.satısController">
+   <children>
+      <SplitPane dividerPositions="0.5502008032128514" layoutX="41.0" layoutY="56.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: pink;">
+               <children>
+                  <Label fx:id="lbl1" layoutX="41.0" layoutY="23.0" text="ID">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl2" layoutX="13.0" layoutY="51.0" text="Kategori">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl3" layoutX="12.0" layoutY="84.0" text="Urun Adı">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl4" layoutX="22.0" layoutY="114.0" text="Beden">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl5" layoutX="26.0" layoutY="146.0" text="Renk">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl6" layoutX="33.0" layoutY="178.0" text="Fiyat">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl7" layoutX="33.0" layoutY="210.0" text="Adet">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt1" layoutX="75.0" layoutY="20.0" />
+                  <TextField fx:id="txt2" layoutX="75.0" layoutY="48.0" />
+                  <TextField fx:id="txt3" layoutX="75.0" layoutY="81.0" />
+                  <TextField fx:id="txt4" layoutX="75.0" layoutY="111.0" />
+                  <TextField fx:id="txt5" layoutX="75.0" layoutY="143.0" />
+                  <TextField fx:id="txt6" layoutX="75.0" layoutY="175.0" />
+                  <TextField fx:id="txt7" layoutX="75.0" layoutY="207.0" />
+                  <TextField fx:id="txt8" layoutX="75.0" layoutY="238.0" />
+                  <Label fx:id="lbl8" layoutX="12.0" layoutY="241.0" text="Acıklama">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btn_sts" layoutX="261.0" layoutY="211.0" mnemonicParsing="false" onAction="#btn_sts_Clck" prefHeight="43.0" prefWidth="64.0" text="SATIŞ" textFill="#772aa1">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_cks" layoutX="440.0" layoutY="11.0" mnemonicParsing="false" onAction="#btn_cks_Clck" text="ÇIKIŞ" textFill="#d319ca">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="lbl_sonuc" layoutX="293.0" layoutY="85.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TableView fx:id="tabelview" layoutY="27.0" onMouseClicked="#tableviewMouseClick" prefHeight="221.0" prefWidth="498.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="col_ID" prefWidth="51.0" text="ID" />
+                      <TableColumn fx:id="col_kategori" prefWidth="81.0" text="Kategori" />
+                        <TableColumn fx:id="col_urunadi" prefWidth="68.0" text="Urun Adı" />
+                        <TableColumn fx:id="col_beden" prefWidth="56.0" text="Beden" />
+                        <TableColumn fx:id="col_renk" prefWidth="66.0" text="Renk" />
+                        <TableColumn fx:id="col_fiyat" prefWidth="46.0" text="Fiyat" />
+                        <TableColumn fx:id="col_adet" prefWidth="44.0" text="Adet" />
+                        <TableColumn fx:id="col_aciklama" prefWidth="85.0" text="Acıklama" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
