@@ -31,4 +31,4 @@
 ![alt text](https://github.com/zeynepsudeatas/satisotomasyon/blob/main/urunekle.png)
 
 ## Satış sayfasında mağazadaki ürünlerin satışını yapıyoruz. <br/>
-![alt text](https://github.com/zeynepsudeatas/satisotomasyon/blob/main/satisekrani.png)
+![alt text](https://github.com/zeynepsudeatas/satisotomasyon/blob/main/satis.png)
