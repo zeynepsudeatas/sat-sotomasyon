@@ -23,3 +23,6 @@
 
 ## Login işleminden sonra menü kısmına yönlendiriliyoruz.Menü kısmında personeller,ürünler ve satış ile ilgili işlemler için farklı sayfalar mevcut. <br/>
 ![alt text](https://github.com/zeynepsudeatas/satisotomasyon/blob/main/men%C3%BC.png)
+
+## Personel sayfasında mağazada çalışan personellerin güncellenmesi veya yeni gelen kişinin sisteme eklenmesini gerçekleştirebiliyoruz. <br/>
+![alt text](https://github.com/zeynepsudeatas/satisotomasyon/blob/main/personelekle.png)
