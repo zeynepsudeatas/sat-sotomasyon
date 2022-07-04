@@ -21,3 +21,5 @@
 ## Yönetici kullanıcı adını ve şifresini girerek giriş yapabilir. </br>
 ![alt text](https://github.com/zeynepsudeatas/satisotomasyon/blob/main/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202022-07-04%20140628.png)
 
+##Login işleminden sonra menü kısmına yönlendiriliyoruz.Menü kısmında personeller,ürünler ve satış ile ilgili işlemler için farklı sayfalar mevcut. <br/>
+![alt text](https://github.com/zeynepsudeatas/satisotomasyon/blob/main/men%C3%BC.png)
