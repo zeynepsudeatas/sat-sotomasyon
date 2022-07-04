@@ -1,0 +1,236 @@
+package application;
+
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import java.sql.*;
+
+import com.isteMySQL.Util.VeritabanıUtil;
+
+
+public class satısController {
+	Connection baglanti=null;
+    PreparedStatement sorguIfadesi=null;
+    ResultSet getirilen=null;
+    String sql;
+	
+	public satısController() {
+		baglanti=VeritabanıUtil.Baglan();
+	}
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private Button btn_cks;
+
+    @FXML
+    private Button btn_sts;
+
+    @FXML
+    private TableColumn<kayitlar_satıs, Integer> col_ID;
+
+    @FXML
+    private TableColumn<kayitlar_satıs,String> col_aciklama;
+
+    @FXML
+    private TableColumn<kayitlar_satıs,Double> col_adet;
+
+    @FXML
+    private TableColumn<kayitlar_satıs, String> col_beden;
+
+    @FXML
+    private TableColumn<kayitlar_satıs, Double> col_fiyat;
+
+    @FXML
+    private TableColumn<kayitlar_satıs, String> col_kategori;
+
+    @FXML
+    private TableColumn<kayitlar_satıs, String> col_renk;
+
+    @FXML
+    private TableColumn<kayitlar_satıs, String> col_urunadi;
+
+    @FXML
+    private Label lbl1;
+
+    @FXML
+    private Label lbl2;
+
+    @FXML
+    private Label lbl3;
+
+    @FXML
+    private Label lbl4;
+
+    @FXML
+    private Label lbl5;
+
+    @FXML
+    private Label lbl6;
+
+    @FXML
+    private Label lbl7;
+
+    @FXML
+    private Label lbl8;
+    
+    @FXML
+    private Label lbl_sonuc;
+
+    @FXML
+    private TableView<kayitlar_satıs> tabelview;
+
+    @FXML
+    private TextField txt1;
+
+    @FXML
+    private TextField txt2;
+
+    @FXML
+    private TextField txt3;
+
+    @FXML
+    private TextField txt4;
+
+    @FXML
+    private TextField txt5;
+
+    @FXML
+    private TextField txt6;
+
+    @FXML
+    private TextField txt7;
+
+    @FXML
+    private TextField txt8;
+    
+    
+
+    @FXML
+    void btn_cks_Clck(ActionEvent event) {
+    	try {
+    		Stage stage=new Stage();
+    		AnchorPane pane1=(AnchorPane) FXMLLoader.load(getClass().getResource("menu.fxml"));
+    		Scene scene1=new Scene(pane1);
+    		stage.setScene(scene1);
+    		stage.show();
+    	}
+    	
+    	catch(Exception e) {
+    		e.printStackTrace();
+    		Alert alert=new Alert(AlertType.ERROR);
+        	alert.setTitle("satıs stok");
+        	alert.setHeaderText("cıkıs");
+        	alert.setContentText("çıkmak istediğinize emin misiniz?");
+        	alert.showAndWait();  		
+    	}
+    }
+    
+    ObservableList<kayitlar_satıs> veriler;
+    @FXML
+    void btn_sts_Clck(ActionEvent event) {
+    	sql="insert into satıs(sID,kategori,urunadi,beden,renk,fiyat,adet,aciklama) values(?,?,?,?,?,?,?,?)";
+    	try {
+			sorguIfadesi=baglanti.prepareStatement(sql);
+			sorguIfadesi.setString(1, txt1.getText().trim());
+			sorguIfadesi.setString(2, txt2.getText().trim());
+			sorguIfadesi.setString(3, txt3.getText().trim());
+			sorguIfadesi.setString(4, txt4.getText().trim());
+			sorguIfadesi.setString(5, txt5.getText().trim());
+			sorguIfadesi.setString(6, txt6.getText().trim());
+			sorguIfadesi.setString(7, txt7.getText().trim());
+			sorguIfadesi.setString(8, txt8.getText().trim());
+			sorguIfadesi.executeUpdate();
+
+			System.out.println("Satış işlemi başarı ile gerçekleşti..");
+			
+			Alert alert=new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Satıs ve Stok Otomasonu");
+			alert.setHeaderText("Bildirim Mesajı");
+			alert.setContentText("Satış işlemi başarı ile gerçekleşti...");
+			alert.showAndWait();
+    	}
+    	
+    	catch (Exception e) { 		 
+			 System.out.println(e.getMessage().toString());
+   
+		}
+   	
+    } 	
+    public void DegerleriGetir(TableView tablo,String sql) {  
+    	sql="select * from satıs";
+    	ObservableList<kayitlar_satıs> kayitlarliste=FXCollections.observableArrayList();
+    	try {
+    		sorguIfadesi=baglanti.prepareStatement(sql);
+    		ResultSet getirilen=sorguIfadesi.executeQuery();
+    		while(getirilen.next()){
+    			kayitlarliste.add(new kayitlar_satıs (getirilen.getInt("sID"),getirilen.getString("kategori"), getirilen.getString("urunadi"), getirilen.getDouble("beden"), getirilen.getString("renk"), getirilen.getDouble("fiyat"), getirilen.getDouble("adet"), getirilen.getString("aciklama")));
+    			
+    		}
+    		col_ID.setCellValueFactory(new PropertyValueFactory<> ("idm"));
+    		col_kategori.setCellValueFactory(new PropertyValueFactory<> ("kategorim"));
+    		col_urunadi.setCellValueFactory(new PropertyValueFactory<> ("urunadim"));
+    		col_beden.setCellValueFactory(new PropertyValueFactory<> ("bedenm"));
+    		col_renk.setCellValueFactory(new PropertyValueFactory<> ("renkm"));
+    		col_fiyat.setCellValueFactory(new PropertyValueFactory<> ("fiyatm"));
+    		col_adet.setCellValueFactory(new PropertyValueFactory<> ("adetm"));
+    		col_aciklama.setCellValueFactory(new PropertyValueFactory<> ("aciklamam"));
+    		tabelview.setItems(kayitlarliste);
+
+    	
+		} catch (Exception e) {
+			
+			System.out.println(e.getMessage().toString());
+		}
+    }
+    
+   	
+    
+
+    @FXML
+    void tableviewMouseClick(MouseEvent event) {
+    	kayitlar_satıs kayit=new kayitlar_satıs(0, sql, sql, null, sql, null, null, sql);
+		 kayit=(kayitlar_satıs) tabelview.getItems().get(tabelview.getSelectionModel().getSelectedIndex());
+		 txt1.setText(String.valueOf(kayit.getId()));
+		 txt2.setText(kayit.getKategori());
+		 txt3.setText(kayit.getUrunadi());
+		 txt4.setText(String.valueOf(kayit.getBeden()));
+		 txt5.setText(kayit.getRenk());
+		 txt6.setText(String.valueOf(kayit.getFiyat()));
+		 txt7.setText(String.valueOf(kayit.getAdet()));
+         txt8.setText(kayit.getAciklama());		 	
+    }
+
+    @FXML
+    void initialize() {
+    	sql="select * from satıs";
+    	DegerleriGetir(tabelview, sql);
+        
+       
+    }
+
+}
