@@ -26,3 +26,9 @@
 
 ## Personel sayfasında mağazada çalışan personellerin güncellenmesi veya yeni gelen kişinin sisteme eklenmesini gerçekleştirebiliyoruz. <br/>
 ![alt text](https://github.com/zeynepsudeatas/satisotomasyon/blob/main/personelekle.png)
+
+## Ürün sayfasında gelen ürünlerin kaydının yapabiliriz.Stoğu bitmiş ürünün silme işlemini yapabiliriz.Bir ürünün bedene bağlı olarak güncellenmesini yapabiliriz.Mağazadaki ürünleri sorgulatabiliriz. <br/>
+![alt text](https://github.com/zeynepsudeatas/satisotomasyon/blob/main/urunekle.png)
+
+## Satış sayfasında mağazadaki ürünlerin satışını yapıyoruz. <br/>
+![alt text](https://github.com/zeynepsudeatas/satisotomasyon/blob/main/satisekrani.png)
