@@ -15,6 +15,10 @@
 
 ## Proje Kontrol Listesi <br/>
 ### Login işlemi -->(04/07/2022) <br/>
+### Personel Ekle -->(04/07/2022)  <br/>
+### Ürün Ekle -->(04/07/2022)  <br/>
+### Satış Ekranı -->(04/07/2022)  <br/>
+
 
 
 
