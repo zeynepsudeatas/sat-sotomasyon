@@ -1,0 +1,248 @@
+package application;
+
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ResourceBundle;
+
+import com.isteMySQL.Util.VeritabanıUtil;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import java.sql.*;
+
+
+public class personelekleController {
+	Connection baglanti=null;
+    PreparedStatement sorguIfadesi=null;
+    ResultSet getirilen=null;
+    String sql;
+    
+	public personelekleController() {
+		baglanti=VeritabanıUtil.Baglan();
+	}
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private Button btn_cıkıs;
+
+    @FXML
+    private Button btn_ekle;
+
+    @FXML
+    private Button btn_sil;
+
+    @FXML
+    private TableColumn<Kayitlar, String> column_ad;
+
+    @FXML
+    private TableColumn<Kayitlar, String> column_adres;
+
+    @FXML
+    private TableColumn<Kayitlar, Integer> column_id;
+
+    @FXML
+    private TableColumn<Kayitlar, Double> column_maas;
+
+    @FXML
+    private TableColumn<Kayitlar, String> column_syad;
+
+    @FXML
+    private TableColumn<Kayitlar, String> column_telno;
+
+    @FXML
+    private Label lbl1;
+
+    @FXML
+    private Label lbl2;
+
+    @FXML
+    private Label lbl3;
+
+    @FXML
+    private Label lbl4;
+
+    @FXML
+    private Label lbl5;
+
+    @FXML
+    private Label lbl6;
+
+    @FXML
+    private Label lbl_sonuc;
+
+    @FXML
+    private TableView<Kayitlar> tablevieww;
+
+    @FXML
+    private TextField txt1;
+
+    @FXML
+    private TextField txt2;
+
+    @FXML
+    private TextField txt3;
+
+    @FXML
+    private TextField txt4;
+
+    @FXML
+    private TextField txt5;
+
+    @FXML
+    private TextField txt6;
+    
+    
+
+    @FXML
+    void btn_cıkıs_Click(ActionEvent event) {
+    	try {
+    		Stage stage=new Stage();
+    		AnchorPane pane1=(AnchorPane) FXMLLoader.load(getClass().getResource("menu.fxml"));
+    		Scene scene1=new Scene(pane1);
+    		stage.setScene(scene1);
+    		stage.show();
+    	}
+    	
+    	catch(Exception e) {
+    		e.printStackTrace();
+    		Alert alert=new Alert(AlertType.ERROR);
+        	alert.setTitle("satıs stok");
+        	alert.setHeaderText("cıkıs");
+        	alert.setContentText("çıkmak istediğinize emin misiniz?");
+        	alert.showAndWait();  		
+    	}
+
+    }
+
+    ObservableList<Kayitlar> veriler;
+    @FXML
+    void btn_ekle_Click(ActionEvent event) {
+    	sql="insert into personelekle(pID,ad,soyad,telno,adres,maas) values(?,?,?,?,?,?)";	
+    	try {
+    		sorguIfadesi=baglanti.prepareStatement(sql);
+			sorguIfadesi.setString(1, txt1.getText().trim());
+			sorguIfadesi.setString(2, txt2.getText().trim());
+			sorguIfadesi.setString(3, txt3.getText().trim());
+			sorguIfadesi.setString(4, txt4.getText().trim());
+			sorguIfadesi.setString(5, txt5.getText().trim());
+			sorguIfadesi.setString(6, txt6.getText().trim());
+			sorguIfadesi.executeUpdate();
+		
+		    System.out.println("Ekleme başarılı");
+		
+		    Alert alert=new Alert(AlertType.CONFIRMATION);
+		    alert.setTitle("Satıs ve Stok Otomasonu");
+		    alert.setHeaderText("Bildirim Mesajı");
+		    alert.setContentText("Kullanıcı ekleme işlemi başarılı");
+		    alert.showAndWait();
+		    DegerleriGetirr(tablevieww);
+    	}	
+    	
+    	
+    	catch (Exception e) {
+			 System.out.println(e.getMessage().toString());
+    
+		} 	
+    	
+    }
+    
+public void DegerleriGetirr(TableView tablo) {
+    	sql="select * from personelekle";
+    	ObservableList<Kayitlar> kayitlarliste=FXCollections.observableArrayList();
+    	try {
+    		sorguIfadesi=baglanti.prepareStatement(sql);
+    		ResultSet getirilen=sorguIfadesi.executeQuery();
+    		while(getirilen.next()){
+    			kayitlarliste.add(new Kayitlar (getirilen.getInt("pID"), getirilen.getString("ad"), getirilen.getString("soyad"), getirilen.getString("telno"), getirilen.getString("adres"), getirilen.getDouble("maas")));		 
+    			
+    		}
+    		column_id.setCellValueFactory(new PropertyValueFactory<> ("idm"));
+    		column_ad.setCellValueFactory(new PropertyValueFactory<> ("adm"));
+    		column_syad.setCellValueFactory(new PropertyValueFactory<> ("soyadm"));
+    		column_telno.setCellValueFactory(new PropertyValueFactory<> ("telnom"));
+    		column_adres.setCellValueFactory(new PropertyValueFactory<> ("adresm"));
+    		column_maas.setCellValueFactory(new PropertyValueFactory<> ("maasm"));
+    		tablevieww.setItems(kayitlarliste);
+    		
+			
+		} 
+    	catch (Exception e) {
+			System.out.println(e.getMessage().toString());
+		}
+    }
+
+    @FXML
+    void btn_sil_Click(ActionEvent event) {
+    	sql="delete from personelekle where pID=? and ad=? and soyad=? and telno=? and adres=? and maas=?";
+    	try {
+			sorguIfadesi=baglanti.prepareStatement(sql);
+			sorguIfadesi.setString(1, txt1.getText().trim());
+			sorguIfadesi.setString(2, txt2.getText().trim());
+			sorguIfadesi.setString(3, txt3.getText().trim());
+			sorguIfadesi.setString(4, txt4.getText().trim());
+			sorguIfadesi.setString(5, txt5.getText().trim());
+			sorguIfadesi.setString(6, txt6.getText().trim());
+
+			sorguIfadesi.executeUpdate();
+			lbl_sonuc.setText("Kullanıcı silme gerçekleşti...");
+			
+			Alert alert=new Alert(AlertType.ERROR);
+			alert.setTitle("Satıs ve Stok Otomasonu");
+			alert.setHeaderText("Bildirim Mesajı");
+			alert.setContentText("Kullanıcı silme işlemi gerçekleşti...");
+			alert.showAndWait();
+			 DegerleriGetirr(tablevieww);
+		} catch (Exception e) {
+			// TODO: handle exception
+			lbl_sonuc.setText(e.getMessage().toString());
+		}
+    	
+
+    }
+    
+    @FXML
+    void tableview_MouseClick(MouseEvent event) {
+
+    	 Kayitlar kayit=new Kayitlar(0, sql, sql, sql, sql, null);
+		 kayit=(Kayitlar) tablevieww.getItems().get(tablevieww.getSelectionModel().getSelectedIndex());
+		 txt1.setText(String.valueOf(kayit.getId()));
+		 txt2.setText(kayit.getAd());
+		 txt3.setText(kayit.getSoyad());
+		 txt4.setText(kayit.getTelno());
+		 txt5.setText(kayit.getAdres());
+		 txt6.setText(String.valueOf(kayit.getMaas()));
+		 
+		
+    }
+
+    @FXML
+    void initialize() {
+    	//sql="select * from personelekle";
+        DegerleriGetirr(tablevieww);
+    	
+       
+    }
+
+}
