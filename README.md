@@ -5,6 +5,7 @@
 -Kayıtlı olan ürünlerin satışını yapabiliyoruz. <br/>
 
 ## Kullanılıcak Dil <br/>
+-JavaFX
 
 ## Yazılım Geliştirme Süreci <br/>
 -Personel ekle formu sisteme yeni personel kaydı,bu kayıtların güncellenmesi ve kayıt silme gibi işlemler için tasarlanmıştır. <br/>
