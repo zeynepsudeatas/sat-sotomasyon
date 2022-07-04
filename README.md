@@ -1,8 +1,8 @@
 # satisotomasyon
 ## Projenin amacı
--Satış otomasyonunda mağazaya gelen ürünlerin ekleme,silme ve güncelleme işlemlerini yapabiliyoruz. <br/>
+-Satış otomasyonunda mağazamıza gelen ürünlerin ekleme,silme ve güncelleme işlemlerini yapabiliyoruz. <br/>
 -Personel işlemlerini yapabiliyoruz. <br/>
--Kayıtlı olan ürünlerin satışını yapabiliyoruz. <br/>
+-Mağazada olan ürünlerin satışını yapabiliyoruz. <br/>
 
 ## Kullanılıcak Dil <br/>
 -JavaFX
